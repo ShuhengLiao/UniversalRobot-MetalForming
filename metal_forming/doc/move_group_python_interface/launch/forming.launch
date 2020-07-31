@@ -1,0 +1,7 @@
+<launch>
+
+  <rosparam file="$(find metal_forming)/config/dsif.yaml" command="load"/>
+ 
+  <node name="forming" pkg="metal_forming" type="experiment.py" respawn="false" output="screen"/>
+  
+</launch>
