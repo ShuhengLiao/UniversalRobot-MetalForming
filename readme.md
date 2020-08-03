@@ -29,12 +29,13 @@ sudo apt install ros-melodic-moveit*
 
 3) Install the UR Ros driver 
 
+From your home directory
 ```
 mkdir -p ur_drivers/src && cd ur_drivers
 
 git clone https://github.com/vishwajeet-NU/Universal_Robots_ROS_Driver.git src/Universal_Robots_ROS_Driver
 
-git clone https://github.com/vishwajeet-NU/universal_robot.git src/fmauch_universal_robot
+git clone -b calibration_devel https://github.com/vishwajeet-NU/universal_robot.git src/fmauch_universal_robot
 
 sudo apt update -qq
 
@@ -48,6 +49,9 @@ echo "source /home/"ACCOUNT_NAME"/ur_drivers/devel/setup.bash" >> ~/.bashrc
 
 ```
 4) Clone this repository and build the package
+
+From your home directory:
+
 ```
 mkdir -p dsif_forming/src && cd dsif_forming
 
