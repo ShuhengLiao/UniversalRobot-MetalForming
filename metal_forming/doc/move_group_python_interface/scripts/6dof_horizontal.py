@@ -251,9 +251,7 @@ def main():
   norm_x = []
   norm_y = []
   norm_z = []
-  args = parser.parse_args()
 
-  path = args.filepath
   i = 0
   last_row = [0,0,0]
   with open(path) as csvfile:
