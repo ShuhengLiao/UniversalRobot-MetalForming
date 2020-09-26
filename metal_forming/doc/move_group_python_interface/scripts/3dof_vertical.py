@@ -167,7 +167,7 @@ class MoveGroupPythonIntefaceTutorial(object):
 
     for i in range(0,len(xcor)):
 
-      eef_pose.position.x = float(xcor[i])/1000.0 
+      eef_pose.position.x = -float(xcor[i])/1000.0 
       eef_pose.position.y = float(ycor[i])/1000.0 
       eef_pose.position.z = float(zcor[i])/1000.0 
 
