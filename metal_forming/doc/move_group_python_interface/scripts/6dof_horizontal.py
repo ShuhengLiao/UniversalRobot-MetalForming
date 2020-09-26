@@ -137,23 +137,6 @@ class MoveGroupPythonIntefaceTutorial(object):
   def go_to_joint_state(self,j1,j2,j3,j4,j5,j6):
     move_group = self.move_group
 
-    # joint0 = radians(82)
-    # joint1 = radians(-57)
-    # joint2 = radians(90)
-    # joint3 = radians(-123)
-    # joint4 = radians(-93)
-    # joint5 = radians(11)
-
-#in lab vals
-    # joint0 = radians(42)
-    # joint1 = radians(-127)
-    # joint2 = radians(-68)
-    # joint3 = radians(-70)
-    # joint4 = radians(-277)
-    # joint5 = radians(0)
-
-#table vals
-
     joint0 = radians(j1)
     joint1 = radians(j2)
     joint2 = radians(j3)
@@ -201,16 +184,6 @@ class MoveGroupPythonIntefaceTutorial(object):
       pitch = atan(normz/normx) 
       yaw = atan(normy/normx)
       roll = 0
-
-      # pitch = asin(-float(norm_y[i]))
-#      print("pitch value= ", pitch)
-
-      # print("norm x value = ", norm_x[i])
-      # print("norm y value =", norm_y[i])
-      # print("norm z value =", norm_z[i])
-
-      # yaw = atan2(float(norm_z[i]), float(norm_x[i]))
-#      print("yaw value= ", yaw)
  
       temp = quaternion_from_euler(roll,pitch,yaw)
       eef_pose.orientation.x = temp[0]
@@ -218,66 +191,10 @@ class MoveGroupPythonIntefaceTutorial(object):
       eef_pose.orientation.z = temp[2]
       eef_pose.orientation.w = temp[3]
 
-      # print("xcor",xcor[i])
-      # print("normx",norm_x[i])
-
-
-      #pitch = z / (x^2 + y^2 )
-
-      #yaw = y/ (z^2 + x^2)
-
-      #roll = x / ( y^2 + z^2 )
-
-#      hypo = sqrt(float(norm_x[i])**2 + float(norm_y[i])**2 + float(norm_z[i])**2 )
-
-      # val1 =  float(norm_x[i]) / hypo
-      # val2 =  float(norm_y[i]) / hypo
-      # val3 =  float(norm_z[i]) / hypo
-
-      # print("val1=",val1)
-      # print("val2",val2)
-      # print("val3",val3)
-
-      # if(float(norm_y[i])==0):
-      #   roll = 0
-      # else:  
-      #   roll = atan2( float(norm_z[i]),float(norm_y[i])) 
-
-      # if(float(norm_x[i]) == 0 ):
-      #   pitch = 0
-      # else:
-      #   pitch = atan2( float(norm_y[i]),float(norm_x[i])) 
-      
-      # if(float(norm_x[i])==0):
-      #   yaw = 0
-      # else:
-      #   yaw = atan2( float(norm_z[i]),float(norm_x[i])) 
-
-#      print("roll = ",roll)
-#      print(roll,pitch,yaw)
       eef_in_baseframe = self.do_transform(eef_pose,'ee_link','world')
 
       euler = euler_from_quaternion([pose_goal_base.orientation.x,pose_goal_base.orientation.y,pose_goal_base.orientation.z,pose_goal_base.orientation.w] )
       pose_goal = eef_in_baseframe
-      # pose_goal.position.x = eef_in_baseframe.position.x
-      # pose_goal.position.y = eef_in_baseframe.position.y
-      # pose_goal.position.z = eef_in_baseframe.position.z
-
-      # temp = quaternion_from_euler(euler[0] + roll,euler[1]+pitch,euler[2]+yaw)
-      # eef_pose.orientation.x = temp[0]
-      # eef_pose.orientation.y = temp[1]
-      # eef_pose.orientation.z = temp[2]
-      # eef_pose.orientation.w = temp[3]
-     
-      # pose_goal.orientation.x = temp[0]
-      # pose_goal.orientation.y = temp[1]
-      # pose_goal.orientation.z = temp[2]
-      # pose_goal.orientation.w = temp[3]
-
-      # pose_goal.orientation.x = pose_goal_base.orientation.x 
-      # pose_goal.orientation.y = pose_goal_base.orientation.y
-      # pose_goal.orientation.z = pose_goal_base.orientation.z
-      # pose_goal.orientation.w = pose_goal_base.orientation.w
 
       waypoints.append(copy.deepcopy(pose_goal))
 
@@ -354,9 +271,6 @@ def main():
       norm_y.append(row[4])
       norm_z.append(row[3])
 
-      # xcordinates.append(row[0])
-      # ycoordinates.append(row[1])
-      # zcoordinates.append(row[2])
       last_row = row
         
 
@@ -373,20 +287,6 @@ def main():
   print "============ Press `Enter` to execute a saved path ..."
   raw_input()
 
-  # tutorial.go_to_joint_state(-135,-96,103,-30,0,0)
-
-
-  # tutorial.go_to_joint_state(-135,-96,103,-30,-93,0)
-
-  # tutorial.go_to_joint_state(-145,-96,104,30,-93,0)
-
-
-  # tutorial.go_to_joint_state(-141,-58,68,-40,-93,0)
-
-  # tutorial.go_to_joint_state(-141,-52,69,-113,-93,0)
-
-  # tutorial.go_to_joint_state(-140,-51,69,-113,-3,0)
-
   tutorial.go_to_joint_state(76,-62,73,-102,-91,-7)
 
 
@@ -394,20 +294,6 @@ def main():
   raw_input()
   pose_goal_base = tutorial.move_group.get_current_pose().pose
 
-  # i = 0
-  # d = 5
-  # counter = 0
-  # while(d>2):
-  #   print "============ Press `Enter` to execute a saved path ..."
-  #   raw_input()
-  #   counter = counter+1 
-  #   print(counter)
-  #   print("x= ", pose_goal_base.position.x)
-  #   euler = euler_from_quaternion([pose_goal_base.orientation.x,pose_goal_base.orientation.y,pose_goal_base.orientation.z,pose_goal_base.orientation.w] )
-
-  #   print("roll=",euler[0])
-  #   print("pitch=",euler[1])
-  #   print("yaw=",euler[2])
 
   cartesian_plan, fraction = tutorial.plan_cartesian_path(xcordinates,ycoordinates,zcoordinates,pose_goal_base,norm_x,norm_y,norm_z)
   tutorial.execute_plan(cartesian_plan)
@@ -426,33 +312,4 @@ if __name__ == '__main__':
 
 
 
-                                                                  # constraint = Constraints()
-                                                                  # constraint.name = "tilt constraint"
-                                                                  # orient = OrientationConstraint()
-                                                                  # orient.header.frame_id = self.planning_frame
-                                                                  # orient.link_name = self.eef_link
-
-                                                                  # roll = 0.0
-                                                                  # pitch = 1.57
-                                                                  # yaw = 0.0
-
-                                                                  # temp = quaternion_from_euler(roll,pitch,yaw)
-
-                                                                  # orient.orientation.x = temp[0]
-                                                                  # orient.orientation.y = temp[1]
-                                                                  # orient.orientation.z = temp[2]
-                                                                  # orient.orientation.w = temp[3]
-
-
-                                                                  # orient.absolute_x_axis_tolerance = 0.2
-                                                                  # orient.absolute_y_axis_tolerance = 0.2
-                                                                  # orient.absolute_z_axis_tolerance = 0.2
-
-                                                                  # orient.weight = 1.0
-
-                                                                  # constraint.orientation_constraints.append(orient)
-
-
-
-#    end_effector_in
 
