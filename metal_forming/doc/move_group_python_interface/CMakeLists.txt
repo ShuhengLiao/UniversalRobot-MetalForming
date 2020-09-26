@@ -5,7 +5,7 @@ install(PROGRAMS
 
 
 install(PROGRAMS
-  scripts/python_exp.py
+  scripts/3dof_vertical.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -16,7 +16,7 @@ install(PROGRAMS
 
 
 install(PROGRAMS
-  scripts/whatwa.py
+  scripts/6dof_horizontal.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

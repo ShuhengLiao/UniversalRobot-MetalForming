@@ -239,10 +239,11 @@ class MoveGroupPythonIntefaceTutorial(object):
 
 
 def main():
+
   print "starting"
-  parser = argparse.ArgumentParser()
-  parser.add_argument("filepath", type=str,
-                    help="display path of csv file")
+  velocity_scaling = rospy.get_param("/velocity_scaling")
+  print("vel scaling is ", velocity_scaling)
+  path = rospy.get_param("/file_loc")
 
   xcordinates = []
   ycoordinates = []
