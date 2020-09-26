@@ -135,6 +135,10 @@ roslaunch metal_forming forming.launch
 ```
 Press enter to move between each task
 
+### Switching between 6 dof horizontal and 3 dof vertical 
+
+1) Open the forming.launch file in /launch folder. Uncomment required file and comment out the other
+
 ### Troubleshooting: 
 
 1) Firewall is not turned off on windows if using virtual machine 
