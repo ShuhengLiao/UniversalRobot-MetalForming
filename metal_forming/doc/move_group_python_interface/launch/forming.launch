@@ -2,6 +2,6 @@
 
   <rosparam file="$(find metal_forming)/config/dsif.yaml" command="load"/>
  
-  <node name="forming" pkg="metal_forming" type="experiment.py" respawn="false" output="screen"/>
+  <node name="forming" pkg="metal_forming" type="3dof_vertical.py" respawn="false" output="screen"/>
   
 </launch>
