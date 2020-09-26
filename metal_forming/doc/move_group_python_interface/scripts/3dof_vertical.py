@@ -7,6 +7,8 @@ import rospy
 import moveit_commander
 import moveit_msgs.msg
 import geometry_msgs.msg
+import os
+
 from math import radians
 from math import pi
 from std_msgs.msg import String
@@ -17,7 +19,7 @@ import tf2_geometry_msgs
 import csv
 
 from geometry_msgs.msg import Pose
-from pathlib import Path
+
 
 
 from moveit_msgs.msg import  Constraints, OrientationConstraint
@@ -242,8 +244,9 @@ def main():
 
   fle_name = rospy.get_param("/file_name")
 
-  home = str(Path.home())    
-  path = os.path.join(home,file_name)
+  abs_path = os.path.abspath(os.getcwd())
+
+  path = os.path.join(abs_path,file_name)
 
 
 #  path = rospy.get_param("/file_loc")
