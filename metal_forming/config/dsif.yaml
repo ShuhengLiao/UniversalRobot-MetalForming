@@ -1,2 +1,2 @@
 velocity_scaling: 0.001
-file_loc : ".toolpaths/funnel_topContactPnts.csv"
+file_name : "funnel_topContactPnts.csv"
