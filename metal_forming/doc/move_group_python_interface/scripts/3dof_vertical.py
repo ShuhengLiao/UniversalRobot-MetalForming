@@ -7,8 +7,6 @@ import rospy
 import moveit_commander
 import moveit_msgs.msg
 import geometry_msgs.msg
-import os
-
 from math import radians
 from math import pi
 from std_msgs.msg import String
@@ -16,11 +14,10 @@ from moveit_commander.conversions import pose_to_list
 
 import tf2_ros
 import tf2_geometry_msgs  
-import csv
 
 from geometry_msgs.msg import Pose
 
-
+import csv
 
 from moveit_msgs.msg import  Constraints, OrientationConstraint
 
@@ -241,15 +238,7 @@ def main():
   print "starting"
   velocity_scaling = rospy.get_param("/velocity_scaling")
   print("vel scaling is ", velocity_scaling)
-
-  fle_name = rospy.get_param("/file_name")
-
-  abs_path = os.path.abspath(os.getcwd())
-
-  path = os.path.join(abs_path,file_name)
-
-
-#  path = rospy.get_param("/file_loc")
+  path = rospy.get_param("/file_loc")
 
   xcordinates = []
   ycoordinates = []
