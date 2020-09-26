@@ -16,6 +16,8 @@ Please keep a hand on the emergency stop at all times!  <br>
 
 3) Trajectory : change file_loc to point where the csv file is ( hint: pwd command will show current folder)
 
+4) To do 6 dof forming, the restricted vertical configuration will not work. The foming takes place on a horizontal bed <br>
+The constraints in the vertical position make it not possible to achieve 6 dof.
 
 ### Installation on a new system : <br>
 
@@ -65,6 +67,24 @@ catkin_make
 
 echo "source /home/"ACCOUNT_NAME"/dsif_forming/devel/setup.bash" >> ~/.bashrc
 ```
+
+5) Update and upgrade once 
+
+```
+sudo apt update 
+sudo apt upgrade
+
+```
+
+6) Ensure the correct file path for the toolpath csv by visiting dsif.yaml in metal_forming/config/dsif.yaml. <br>
+The filepath can be found by going to the toolpaths folder and running : 
+
+```
+pwd
+
+```
+To change the toolpath csv file, update the same at this path.<br>
+The velocity scaling can also be tweaked in dsif.yaml if requried
 
 ### Setting up external control on Ur5
 

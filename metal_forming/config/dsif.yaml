@@ -1,2 +1,2 @@
 velocity_scaling: 0.001
-file_loc : "~/dsif_forming/src/UniversalRobot-MetalForming/metal_forming/toolpaths/funnel_topContactPnts.csv"
+file_loc : "/home/dsif/dsif_forming/src/UniversalRobot-MetalForming/metal_forming/toolpaths/funnel_topContactPnts.csv"

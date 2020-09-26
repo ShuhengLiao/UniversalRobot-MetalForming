@@ -159,7 +159,7 @@ class MoveGroupPythonIntefaceTutorial(object):
     current_joints = move_group.get_current_joint_values()
     return all_close(joint_goal, current_joints, 0.01)
 
-  def plan_cartesian_path(self, xcor,ycor,zcor,pose_goal_base, norm_x,norm_y,norm_z, scale=1):
+  def plan_cartesian_path(self, xcor,ycor,zcor,pose_goal_base, norm_x,norm_y,norm_z, vel_scale, scale=1):
 
     move_group = self.move_group
 
@@ -193,7 +193,6 @@ class MoveGroupPythonIntefaceTutorial(object):
 
       eef_in_baseframe = self.do_transform(eef_pose,'ee_link','world')
 
-      euler = euler_from_quaternion([pose_goal_base.orientation.x,pose_goal_base.orientation.y,pose_goal_base.orientation.z,pose_goal_base.orientation.w] )
       pose_goal = eef_in_baseframe
 
       waypoints.append(copy.deepcopy(pose_goal))
@@ -206,7 +205,7 @@ class MoveGroupPythonIntefaceTutorial(object):
 
     ref_state = self.robot.get_current_state()
     
-    replanned = move_group.retime_trajectory(ref_state,plan,velocity_scaling_factor=1,acceleration_scaling_factor=1)
+    replanned = move_group.retime_trajectory(ref_state,plan,velocity_scaling_factor=vel_scale,acceleration_scaling_factor=vel_scale)
 
     return replanned, fraction
 
@@ -257,7 +256,6 @@ def main():
   with open(path) as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',')
     for row in spamreader:
-      print("length of row = ",len(row))
       if(last_row[0]==row[0]):
         last_row = row
         continue
@@ -283,23 +281,24 @@ def main():
 
   tutorial = MoveGroupPythonIntefaceTutorial()
 
-  print "============ Press `Enter` to execute a saved path ..."
+  print "============ Press `Enter` to go to forming position ..."
   raw_input()
 
   tutorial.go_to_joint_state(76,-62,73,-102,-91,-7)
 
 
-  print "============ Press `Enter` to execute a saved path ..."
+  print "============ Press `Enter` start forming ..."
   raw_input()
   pose_goal_base = tutorial.move_group.get_current_pose().pose
 
-
-  cartesian_plan, fraction = tutorial.plan_cartesian_path(xcordinates,ycoordinates,zcoordinates,pose_goal_base,norm_x,norm_y,norm_z)
+  cartesian_plan, fraction = tutorial.plan_cartesian_path(xcordinates,ycoordinates,zcoordinates,pose_goal_base,norm_x,norm_y,norm_z,velocity_scaling)
   tutorial.execute_plan(cartesian_plan)
 
-  
-  print "============ Press `Enter` to execute a saved path ..."
+
+  print "============ Press `Enter` to ho home ..."
   raw_input()
+
+  tutorial.go_to_joint_state(-135,-180,150,-30,0.1,0)
 
 
 if __name__ == '__main__':
